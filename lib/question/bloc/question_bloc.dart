@@ -50,12 +50,10 @@ class QuestionState {
   }) {
     return QuestionState(
       scoreAutomotiva: scoreAutomotiva ?? this.scoreAutomotiva,
-      scoreInteligenciaArtificial:
-          scoreInteligenciaArtificial ?? this.scoreInteligenciaArtificial,
+      scoreInteligenciaArtificial: scoreInteligenciaArtificial ?? this.scoreInteligenciaArtificial,
       scoreArquitetura: scoreArquitetura ?? this.scoreArquitetura,
       scoreSistemasAgeis: scoreSistemasAgeis ?? this.scoreSistemasAgeis,
-      scoreSegurancaSistemas:
-          scoreSegurancaSistemas ?? this.scoreSegurancaSistemas,
+      scoreSegurancaSistemas: scoreSegurancaSistemas ?? this.scoreSegurancaSistemas,
       scoreComplexos: scoreComplexos ?? this.scoreComplexos,
       scoreFerramentas: scoreFerramentas ?? this.scoreFerramentas,
       scoreIA: scoreIA ?? this.scoreIA,
@@ -91,30 +89,31 @@ class QuestionBloc extends Bloc<QuestionEvent, QuestionState> {
       int newScoreComplexos = state.scoreComplexos;
       int newScoreFerramentas = state.scoreFerramentas;
       int newScoreIA = state.scoreIA;
+
       switch (event.weight) {
         case 5:
-          newScoreAutomotiva += 5;
+          newScoreAutomotiva += 1;
           break;
         case 1:
           newScoreInteligenciaArtificial += 1;
           break;
         case 2:
-          newScoreArquitetura += 2;
+          newScoreArquitetura += 1;
           break;
         case 3:
-          newScoreSistemasAgeis += 3;
+          newScoreSistemasAgeis += 1;
           break;
         case 4:
-          newScoreSegurancaSistemas += 4;
+          newScoreSegurancaSistemas += 1;
           break;
         case 6:
-          newScoreIA += 6;
+          newScoreIA += 1;
           break;
         case 7:
-          newScoreComplexos += 7;
+          newScoreComplexos += 1;
           break;
         case 8:
-          newScoreFerramentas += 8;
+          newScoreFerramentas += 1;
           break;
       }
 

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:se_quiz/constants/constants.dart';
-import 'package:se_quiz/question/page/question_page.dart';
+import 'package:se_quiz/course_overview/course_overview_page.dart';
 
 void main() => runApp(const MyApp());
 
@@ -18,7 +17,7 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Career Path Quiz'),
         ),
-        body: QuestionPage(questions: Constants.questions),
+        body: const CourseSummaryPage(),
       ),
     );
   }

@@ -14,21 +14,24 @@ class QuestionPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => QuestionBloc(),
-      child: Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: BlocBuilder<QuestionBloc, QuestionState>(
-            builder: (context, state) {
-              if (state.showResults) {
-                return const ResultPage();
-              }
-              return ListView.builder(
-                itemCount: questions.length,
-                itemBuilder: (context, index) {
-                  final question = questions[index];
-                  return Column(
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Career Path Quiz'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: BlocBuilder<QuestionBloc, QuestionState>(
+          builder: (context, state) {
+            if (state.showResults) {
+              return const ResultPage();
+            }
+            return ListView.builder(
+              itemCount: questions.length,
+              itemBuilder: (context, index) {
+                final question = questions[index];
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
@@ -38,6 +41,7 @@ class QuestionPage extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
+                      const SizedBox(height: 8.0),
                       ...question.options.map(
                         (option) => RadioListTile(
                           title: Text(option.answer),
@@ -51,18 +55,28 @@ class QuestionPage extends StatelessWidget {
                         ),
                       ),
                     ],
-                  );
-                },
-              );
-            },
-          ),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            context.read<QuestionBloc>().add(ShowResults());
+                  ),
+                );
+              },
+            );
           },
-          child: const Icon(Icons.check),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          final questionBloc = context.read<QuestionBloc>();
+          if (questionBloc.state.selectedAnswers.length == questions.length) {
+            questionBloc.add(ShowResults());
+          } else {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text(
+                    'Por favor, responda todas as perguntas antes de finalizar o quiz.'),
+              ),
+            );
+          }
+        },
+        child: const Icon(Icons.check),
       ),
     );
   }
