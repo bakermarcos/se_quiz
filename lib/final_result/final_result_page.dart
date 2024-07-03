@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:se_quiz/constants/constants.dart';
 import 'package:se_quiz/question/bloc/question_bloc.dart';
-import 'package:url_launcher/url_launcher_string.dart';
+import 'package:se_quiz/utils/functions.dart';
 
 class ResultPage extends StatelessWidget {
   const ResultPage({super.key});
@@ -62,7 +62,7 @@ class ResultPage extends StatelessWidget {
               const SizedBox(height: 10),
               GestureDetector(
                 onTap: () {
-                  launchURL(
+                  Functions.launchURL(
                       'https://www.incose.org/communities/working-groups-initiatives/automotive');
                 },
                 child: const Text(
@@ -72,7 +72,7 @@ class ResultPage extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  launchURL(
+                  Functions.launchURL(
                       'https://www.incose.org/communities/working-groups-initiatives/artificial-intelligence-systems');
                 },
                 child: const Text(
@@ -82,7 +82,7 @@ class ResultPage extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  launchURL(
+                  Functions.launchURL(
                       'https://www.incose.org/communities/working-groups-initiatives/architecture');
                 },
                 child: const Text(
@@ -92,7 +92,7 @@ class ResultPage extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  launchURL(
+                  Functions.launchURL(
                       'https://www.incose.org/communities/working-groups-initiatives/agile-systems-se');
                 },
                 child: const Text(
@@ -102,7 +102,7 @@ class ResultPage extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  launchURL(
+                  Functions.launchURL(
                       'https://www.incose.org/communities/working-groups-initiatives/systems-security-engineering');
                 },
                 child: const Text(
@@ -123,13 +123,5 @@ class ResultPage extends StatelessWidget {
         );
       },
     );
-  }
-
-  void launchURL(String url) async {
-    if (await canLaunchUrlString(url)) {
-      await launchUrlString(url);
-    } else {
-      throw 'Could not launch $url';
-    }
   }
 }

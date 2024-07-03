@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher_string.dart';
+import 'package:se_quiz/utils/functions.dart';
 
 class DeveloperInfoPage extends StatelessWidget {
   const DeveloperInfoPage({super.key});
@@ -37,7 +37,7 @@ class DeveloperInfoPage extends StatelessWidget {
             const SizedBox(height: 10),
             GestureDetector(
               onTap: () {
-                launchURL('https://github.com/bakermarcos');
+                Functions.launchURL('https://github.com/bakermarcos');
               },
               child: const Text(
                 'GitHub',
@@ -47,7 +47,7 @@ class DeveloperInfoPage extends StatelessWidget {
             const SizedBox(height: 10),
             GestureDetector(
               onTap: () {
-                launchURL('https://www.linkedin.com/in/marcosbaker/');
+                Functions.launchURL('https://www.linkedin.com/in/marcosbaker/');
               },
               child: const Text(
                 'LinkedIn',
@@ -58,13 +58,5 @@ class DeveloperInfoPage extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  void launchURL(String url) async {
-    if (await canLaunchUrlString(url)) {
-      await launchUrlString(url);
-    } else {
-      throw 'Could not launch $url';
-    }
   }
 }

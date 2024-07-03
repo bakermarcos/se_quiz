@@ -4,7 +4,7 @@ import 'package:se_quiz/constants/constants.dart';
 import 'package:se_quiz/developer_info/developer_info_page.dart';
 import 'package:se_quiz/question/bloc/question_bloc.dart';
 import 'package:se_quiz/question/page/question_page.dart';
-import 'package:url_launcher/url_launcher_string.dart';
+import 'package:se_quiz/utils/functions.dart';
 
 class CourseSummaryPage extends StatelessWidget {
   const CourseSummaryPage({super.key});
@@ -31,7 +31,8 @@ class CourseSummaryPage extends StatelessWidget {
             const SizedBox(height: 10),
             GestureDetector(
               onTap: () {
-                launchURL('https://ufmg.br/cursos/graduacao/2404/91217');
+                Functions.launchURL(
+                    'https://ufmg.br/cursos/graduacao/2404/91217');
               },
               child: const Text(
                 'Saiba mais sobre o curso',
@@ -135,7 +136,7 @@ class CourseSummaryPage extends StatelessWidget {
             const SizedBox(height: 10),
             GestureDetector(
               onTap: () {
-                launchURL('https://www.incose.org/');
+                Functions.launchURL('https://www.incose.org/');
               },
               child: const Text(
                 'Saiba mais sobre a INCOSE',
@@ -173,13 +174,5 @@ class CourseSummaryPage extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  void launchURL(String url) async {
-    if (await canLaunchUrlString(url)) {
-      await launchUrlString(url);
-    } else {
-      throw 'Could not launch $url';
-    }
   }
 }
