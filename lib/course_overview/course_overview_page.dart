@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:se_quiz/constants/constants.dart';
+import 'package:se_quiz/developer_info/developer_info_page.dart';
 import 'package:se_quiz/question/bloc/question_bloc.dart';
 import 'package:se_quiz/question/page/question_page.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class CourseSummaryPage extends StatelessWidget {
   const CourseSummaryPage({super.key});
@@ -25,6 +27,16 @@ class CourseSummaryPage extends StatelessWidget {
             const Text(
               'O curso de Engenharia de Sistemas da UFMG é estruturado para fornecer uma formação sólida e abrangente em diversos campos da engenharia, preparando profissionais capazes de lidar com a complexidade e a integração de sistemas em diferentes áreas de aplicação. Com uma abordagem interdisciplinar, o curso se destaca por integrar conhecimentos em matemática, física, informática, eletrônica e mecânica, além de habilidades em gestão, empreendedorismo e inovação.',
               style: TextStyle(fontSize: 16),
+            ),
+            const SizedBox(height: 10),
+            GestureDetector(
+              onTap: () {
+                launchURL('https://ufmg.br/cursos/graduacao/2404/91217');
+              },
+              child: const Text(
+                'Saiba mais sobre o curso',
+                style: TextStyle(fontSize: 16, color: Colors.blue),
+              ),
             ),
             const SizedBox(height: 20),
             const Text(
@@ -111,6 +123,26 @@ class CourseSummaryPage extends StatelessWidget {
               style: TextStyle(fontSize: 16),
             ),
             const SizedBox(height: 20),
+            const Text(
+              'Sobre a INCOSE',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 10),
+            const Text(
+              'A INCOSE (International Council on Systems Engineering) é uma organização sem fins lucrativos dedicada ao avanço da prática e do ensino da engenharia de sistemas. A INCOSE oferece uma plataforma para a troca de conhecimento e melhores práticas em engenharia de sistemas, promovendo a colaboração entre profissionais, acadêmicos e organizações de todo o mundo.',
+              style: TextStyle(fontSize: 16),
+            ),
+            const SizedBox(height: 10),
+            GestureDetector(
+              onTap: () {
+                launchURL('https://www.incose.org/');
+              },
+              child: const Text(
+                'Saiba mais sobre a INCOSE',
+                style: TextStyle(fontSize: 16, color: Colors.blue),
+              ),
+            ),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
@@ -125,9 +157,29 @@ class CourseSummaryPage extends StatelessWidget {
               },
               child: const Text('Iniciar Quiz de Carreira'),
             ),
+            const SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const DeveloperInfoPage(),
+                  ),
+                );
+              },
+              child: const Text('Ver mais sobre o desenvolvedor'),
+            ),
           ],
         ),
       ),
     );
+  }
+
+  void launchURL(String url) async {
+    if (await canLaunchUrlString(url)) {
+      await launchUrlString(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }

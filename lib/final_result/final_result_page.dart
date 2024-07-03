@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:se_quiz/final_result/models/interest_area.dart';
 import 'package:se_quiz/question/bloc/question_bloc.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class ResultPage extends StatelessWidget {
   const ResultPage({super.key});
@@ -40,7 +41,7 @@ class ResultPage extends StatelessWidget {
             children: [
               const Text(
                 'Resultado do Quiz:',
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 20),
               Text(
@@ -54,6 +55,63 @@ class ResultPage extends StatelessWidget {
                 style: const TextStyle(fontSize: 16),
               ),
               const SizedBox(height: 20),
+              const Text(
+                'Links para Grupos de Trabalho da INCOSE:',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 10),
+              GestureDetector(
+                onTap: () {
+                  launchURL(
+                      'https://www.incose.org/communities/working-groups-initiatives/automotive');
+                },
+                child: const Text(
+                  'Automotive',
+                  style: TextStyle(fontSize: 16, color: Colors.blue),
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  launchURL(
+                      'https://www.incose.org/communities/working-groups-initiatives/artificial-intelligence-systems');
+                },
+                child: const Text(
+                  'Artificial Intelligence Systems',
+                  style: TextStyle(fontSize: 16, color: Colors.blue),
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  launchURL(
+                      'https://www.incose.org/communities/working-groups-initiatives/architecture');
+                },
+                child: const Text(
+                  'Architecture',
+                  style: TextStyle(fontSize: 16, color: Colors.blue),
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  launchURL(
+                      'https://www.incose.org/communities/working-groups-initiatives/agile-systems-se');
+                },
+                child: const Text(
+                  'Agile Systems SE',
+                  style: TextStyle(fontSize: 16, color: Colors.blue),
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  launchURL(
+                      'https://www.incose.org/communities/working-groups-initiatives/systems-security-engineering');
+                },
+                child: const Text(
+                  'Systems Security Engineering',
+                  style: TextStyle(fontSize: 16, color: Colors.blue),
+                ),
+              ),
+              // Continue adding more links for other groups
+              const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
                   Navigator.pop(context);
@@ -65,5 +123,13 @@ class ResultPage extends StatelessWidget {
         );
       },
     );
+  }
+
+  void launchURL(String url) async {
+    if (await canLaunchUrlString(url)) {
+      await launchUrlString(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }
