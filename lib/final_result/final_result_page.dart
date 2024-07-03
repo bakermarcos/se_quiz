@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:se_quiz/final_result/models/interest_area.dart';
+import 'package:se_quiz/constants/constants.dart';
 import 'package:se_quiz/question/bloc/question_bloc.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -29,7 +29,7 @@ class ResultPage extends StatelessWidget {
         final highestIndex = scores.first['index'];
 
         if (highestIndex != null) {
-          final area = InterestArea.areas[highestIndex];
+          final area = Constants.areas[highestIndex];
           resultText = area.name;
           resultDescription = area.description;
         }
@@ -45,7 +45,7 @@ class ResultPage extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               Text(
-                resultText,
+                'Após seu teste vemos que você pode gostar de $resultText',
                 style:
                     const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
